@@ -32,16 +32,64 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
+
+      <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" id="intro_toast" data-autohide="false" style="position: absolute; top: 0; right: 0; margin: 12px 12px 0 0;">
+        <div class="toast-body">
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span id="intro_toast_text"></span>
+        </div>
+      </div>
+
       <div class="header pt-3">
         <div class="text-center display-3">
           recipe catalog
         </div>
       </div>
 
-      <div class="mainSection h5 p-2 mb-1">
+      <div class="mainSection h5 p-2">
         <div class="card py-3 m-md-4 p-md-4">
           <div class="cardTitle text-center mb-2">a list of ingredients by recipe:</div>
+
           <div id="recipeBox" class="m-2"></div>
+
+          <div id="add_recipe_button_row" style="width: 100%; box-shadow: none; transition: .45s;" class="pt-2">
+            <button type="button" class="btn btn-light position-relative" id="addRecipeButton" data-toggle="modal" style="max-width: 200px; left: 200; margin: 0px 0px 0px calc(50% - 50px);">
+              add a recipe
+            </button>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div id="modal_box">
+        <div class="modal fade" id="addRecipeModal" tabindex="-1" role="dialog"  aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div role="alert" aria-live="assertive" aria-atomic="true" id="validation_toast" class="toast" data-autohide="false" style="position: absolute; top: 0; right: 0; margin: 12px 20px 0 0; box-shadow: none; border: none; color: orange;">
+                <div class="toast-body">
+                  <span id="validation_toast_text"></span>
+                </div>
+              </div>
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">add a recipe</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body add_modal_body">
+                <div class="input-group mb-3">
+                  <input type="text" id="new_recipe_input" class="form-control" placeholder="new recipe name" aria-label="new recipe name" aria-describedby="button-addon2">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                <button type="button" class="btn btn-info" id="save_new_recipe_button">save new recipe</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

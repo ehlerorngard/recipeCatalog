@@ -26,6 +26,7 @@ def toInt(val):
 # I need to decode it from the <WSGIobject>:
 def parseReqBody(body):
 	decoded_body = bytes.decode(body)
+	print("decoded body", decoded_body)
 
 	parsed_body = {}
 	for x in decoded_body.split('&'):
@@ -209,13 +210,29 @@ class RecipeView(View):
 
 
 	def post(self, request, *args, **kwargs):
-		print(request)
-		print(request['body'])
-		return JsonResponse({"de ida": "y vuelta"})
+		body = parseReqBody(request.body)
+
+		ress = Recipe(name=deHex(body['name']))
+		ress.save()
+		print("new recipe saved:", ress)
+
+		return JsonResponse(parseRecipe(ress), safe=False)
+
+	def put(self, request, *args, **kwargs):
+		body = parseReqBody(request.body)
+
+		print("PUT body", body)
+
+		ressipee = Recipe.objects.get(pk=kwargs['id'])
+		ressipee.name = body['name']
+		ressipee.save()
+		print("updated recipe saved:", ressipee)
+
+		return JsonResponse(parseRecipe(ressipee), safe=False)
 
 
 	def delete(self, request, *args, **kwargs):
-		rec = Recipe.objects.get(args)
+		rec = Recipe.objects.get(pk=kwargs['id'])
 		rec.ingredients.set([])
 		rec.delete()
 		return JsonResponse({'status': 204})        
