@@ -4,6 +4,7 @@ import psycopg2
 DEBUG = True
 
 STATIC_ROOT = '/static/'
+STATIC_URL = '/static/'
 
 ALLOWED_HOSTS = ['localhost']
 
