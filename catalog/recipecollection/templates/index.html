@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Recipes</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <base href="/" />
+
+    {% load static %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Dawning+of+a+New+Day|Pacifico|Roboto:300,400,500|Montserrat:300i,400,700|Miss+Fajardose|Sacramento" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/bootstrap-tokenfield.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/tokenfield-typeahead.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'recipe.css' %}">
+
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div class="header pt-3">
+        <div class="text-center display-3">
+          recipe catalog
+        </div>
+      </div>
+
+      <div class="mainSection h5 p-2 mb-1">
+        <div class="card py-3 m-md-4 p-md-4">
+          <div class="cardTitle text-center mb-2">a list of ingredients by recipe:</div>
+          <div id="recipeBox" class="m-2"></div>
+        </div>
+      </div>
+
+      <div class="footer p-3 text-center">
+        © 2019 ehler ørngård
+      </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'dist/bootstrap-tokenfield.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'index.js' %}"></script>
+  </body>
+</html>
