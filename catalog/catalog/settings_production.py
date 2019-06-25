@@ -1,6 +1,5 @@
 import os 
 import psycopg2
-import django_heroku
 
 DEBUG = False
 
@@ -103,9 +102,5 @@ CSRF_USE_SESSIONS = False
 
 # True would disallow csrf cookies in a response (/ in anything other than in HTTP)
 CSRF_COOKIE_HTTPONLY = False
-
 SECURE_CONTENT_TYPE_NOSNIFF = False
-
 X_FRAME_OPTIONS = 'DENY'
-
-django_heroku.settings(locals())

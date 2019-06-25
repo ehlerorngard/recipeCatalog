@@ -1,6 +1,4 @@
 import os
-import django_heroku
-
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
