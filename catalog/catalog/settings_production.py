@@ -19,9 +19,9 @@ DEBUG = False
 
 # STATIC_TMP = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = 'https://recipe-ingredient-catalog.herokuapp.com'
+STATIC_URL = 'https://recipe-ingredient-catalog.herokuapp.com/static'
 
-ALLOWED_HOSTS = ['recipe-ingredient-catalog.herokuapp.com/']
+ALLOWED_HOSTS = ['recipe-ingredient-catalog.herokuapp.com']
 
 DATABASES = {
     'default': {
@@ -38,7 +38,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-CORS_ORIGIN_WHITELIST = ['https://orngard.com/']
+CORS_ORIGIN_WHITELIST = ['https://orngard.com']
 
 CSRF_TRUSTED_ORIGINS = ['orngard.com']
 
