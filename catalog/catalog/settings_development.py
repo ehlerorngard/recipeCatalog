@@ -19,7 +19,7 @@ DATABASES = {
     }
 }
 
-CORS_ORIGIN_WHITELIST = ['localhost']
+CORS_ORIGIN_WHITELIST = ['http://localhost']
 
 CSRF_TRUSTED_ORIGINS = ['localhost']
 
