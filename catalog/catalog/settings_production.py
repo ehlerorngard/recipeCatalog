@@ -5,6 +5,11 @@ import django_heroku
 DEBUG = False
 
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_URL = '/static/'
 
@@ -41,8 +46,6 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True
 CORS_ORIGIN_WHITELIST = ['https://ehlerorngard.com', 'https://www.ehlerorngard.com']
 
 CSRF_TRUSTED_ORIGINS = ['ehlerorngard.com', 'www.ehlerorngard.com']
-
-CSRF_COOKIE_DOMAIN = 'ehlerorngard.com'
 
 # Allow these headers on the request
 CORS_ALLOW_HEADERS = [
@@ -104,3 +107,5 @@ CSRF_COOKIE_HTTPONLY = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
 
 X_FRAME_OPTIONS = 'DENY'
+
+django_heroku.settings(locals())

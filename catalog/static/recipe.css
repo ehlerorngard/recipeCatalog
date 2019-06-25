@@ -5,14 +5,7 @@ body {
 .header {
 	font-family: "Poiret One";
 	font-weight: 700;
-/* 	position: fixed;
-	top: 0;
-	left: 0;
-	height: 118px; */
 }
-/* .headerSpacer {
-	height: 118px;
-} */
 
 .footer {
 	height: 56px;
@@ -34,7 +27,7 @@ body {
 
 }
 input {
-
+	border: 1px solid green !important;
 }
 .card {
 	border-radius: 6px;

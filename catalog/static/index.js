@@ -6,27 +6,28 @@ var csrfToken = ''
 // ======================
 var requests = {
 	getToken: function() {
-		let token;
 		$.ajax({
-			url: `/csrf/`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/csrf/`,
 			method: "GET",
+			xhrFields: {withCredentials: true},
 		}).then(function(response) {
 			csrfToken = response.csrftoken;
-			return token;
 		});
 	},
 	getRecipe: function(id) {
 		$.ajax({
-			url: `/recipes/${id}`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/${id}/`,
 			method: "GET",
+			xhrFields: {withCredentials: true},
 		}).then(function(response) {
 			console.log("getRecipe response: ", response);
 		});
 	},
 	getRecipes: function() {
 		$.ajax({
-			url: `/recipes`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/`,
 			method: "GET",
+			xhrFields: {withCredentials: true},
 		}).then(function(response) {
 			console.log("getRecipe response: ", response);
 
@@ -34,10 +35,12 @@ var requests = {
 		});
 	},
 	createRecipe: function(data) {
+        console.log("about send create request, data:", data, "token", csrfToken);
 		$.ajax({
-			url: `/recipes/`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/`,
 			method: "POST",
 			data: data,
+			xhrFields: {withCredentials: true},
 			headers: {'X-CSRFToken': csrfToken},
 		}).then(function(response) {
 			console.log("create Recipe response: ", response);
@@ -47,9 +50,10 @@ var requests = {
 	updateRecipe: function(data, recipe_id) {
 		console.log("about to update ", recipe_id, data)
 		$.ajax({
-			url: `/recipes/${recipe_id}/`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/${recipe_id}/`,
 			method: "PUT",
 			data: data,
+			xhrFields: {withCredentials: true},
 			headers: {'X-CSRFToken': csrfToken},
 		}).then(function(response) {
 			console.log("updateRecipe response: ", response);
@@ -58,8 +62,9 @@ var requests = {
 	},
 	removeRecipe: function(id) {
 		$.ajax({
-			url: `/recipes/${id}/`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/${id}/`,
 			method: "DELETE",
+			xhrFields: {withCredentials: true},
 			headers: {'X-CSRFToken': csrfToken},
 		}).then(function(response) {
 			$(`#recipeRow${id}`).remove();
@@ -67,8 +72,9 @@ var requests = {
 	},
 	getIngredients: function() {
 		$.ajax({
-			url: `/ingredients/`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/ingredients/`,
 			method: "GET",
+			xhrFields: {withCredentials: true},
 		}).then(function(response) {
 			response = JSON.parse(response);
 			console.log("getIngredients PARSEDresponse: ", response);
@@ -78,26 +84,29 @@ var requests = {
 	},
 	createIngredient: function(data) {
 		return $.ajax({
-			url: `/ingredients/`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/ingredients/`,
 			method: "POST",
 			data: data,
+			xhrFields: {withCredentials: true},
 			headers: {'X-CSRFToken': csrfToken},
 		});
 	},
 	updateIngredient: function(data, ingredient_id) {
 		var appendix = ingredient_id !== null ? (ingredient_id + '/') : ''
 		return $.ajax({
-			url: '/ingredients/' + appendix,
+			url: 'https://recipe-ingredient-catalog.herokuapp.com/ingredients/' + appendix,
 			method: "PUT",
 			data: data,
+			xhrFields: {withCredentials: true},
 			headers: {'X-CSRFToken': csrfToken},
 		});
 	},
 	removeIngredient: function(data, ingredient_id) {
 		$.ajax({
-			url: `/ingredients/${ingredient_id}/`,
+			url: `https://recipe-ingredient-catalog.herokuapp.com/ingredients/${ingredient_id}/`,
 			method: "DELETE",
 			data: data,
+			xhrFields: {withCredentials: true},
 			headers: {'X-CSRFToken': csrfToken},
 		}).then(function(response) {
 			console.log("DELETE", response);
