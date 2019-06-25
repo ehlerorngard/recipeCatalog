@@ -1,5 +1,6 @@
 import os 
 import psycopg2
+import django_heroku
 
 DEBUG = False
 
@@ -9,7 +10,9 @@ STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
 
+    os.path.join(BASE_DIR, 'staticfiles'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -37,3 +40,5 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True
 CORS_ORIGIN_WHITELIST = ['https://recipe-ingredient-catalog.herokuapp.com/']
 
 CSRF_TRUSTED_ORIGINS = ['recipe-ingredient-catalog.herokuapp.com/']
+
+django_heroku.settings(locals())
