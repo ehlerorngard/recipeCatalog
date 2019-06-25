@@ -37,6 +37,27 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-CORS_ORIGIN_WHITELIST = ['https://recipe-ingredient-catalog.herokuapp.com/']
+CORS_ORIGIN_WHITELIST = ['https://orngard.com/']
 
-CSRF_TRUSTED_ORIGINS = ['recipe-ingredient-catalog.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['orngard.com']
+
+# Allow these headers on the request
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'access-control-request-headers',
+    'access-control-request-method',
+    'accept-encoding',
+    'accept-language',
+    'authorization',
+    'connection',
+    'content-type',
+    'cookie',
+    'dnt',
+    'host',
+    'origin',
+    'referer',
+    'server',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
