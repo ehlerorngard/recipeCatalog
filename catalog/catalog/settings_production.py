@@ -64,41 +64,41 @@ CORS_ALLOW_HEADERS = [
 ]
 
 
-# # Allow cross origin cookies:
-# SESSION_COOKIE_SAMESITE = None
-# CRSF_COOKIE_SAMESITE = None
+# Allow cross origin cookies:
+SESSION_COOKIE_SAMESITE = None
+CRSF_COOKIE_SAMESITE = None
 
-# # To allow cookies in cross-site HTTP requests:
-# CORS_ALLOW_CREDENTIALS = True
+# To allow cookies in cross-site HTTP requests:
+CORS_ALLOW_CREDENTIALS = True
 
-# # Ensure the CSRF cookie is sent from a secure (https) location:
-# CSRF_COOKIE_SECURE = True
+# Ensure the CSRF cookie is sent from a secure (https) location:
+CSRF_COOKIE_SECURE = True
 
-# # Allow browsers to ensure that the cookie is only sent under an HTTPS connection:
-# SESSION_COOKIE_SECURE = True
+# Allow browsers to ensure that the cookie is only sent under an HTTPS connection:
+SESSION_COOKIE_SECURE = True
 
-# # Enable XSS filter in the browser, and force it to always block suspected XSS attacks:
-# SECURE_BROWSER_XSS_FILTER = True
+# Enable XSS filter in the browser, and force it to always block suspected XSS attacks:
+SECURE_BROWSER_XSS_FILTER = True
 
-# # Redirect all non-HTTPS requests to HTTPS
-# SECURE_SSL_REDIRECT = True
+# Redirect all non-HTTPS requests to HTTPS
+SECURE_SSL_REDIRECT = True
 
 
-# """
-# ________[ NOTE ]________
-# Most of the following are synonymous with the defaults for those settings,
-# but I like clarity and prefer minimizing ambiguity regarding things that
-# impact critical functionality, so I am including them for easy future reference.
-# """
-# CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
-# CSRF_COOKIE_NAME = 'csrftoken'
+"""
+________[ NOTE ]________
+Most of the following are synonymous with the defaults for those settings,
+but I like clarity and prefer minimizing ambiguity regarding things that
+impact critical functionality, so I am including them for easy future reference.
+"""
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
+CSRF_COOKIE_NAME = 'csrftoken'
 
-# # Whether to store the CSRF token in the user’s session instead of in a cookie
-# CSRF_USE_SESSIONS = False
+# Whether to store the CSRF token in the user’s session instead of in a cookie
+CSRF_USE_SESSIONS = False
 
-# # True would disallow csrf cookies in a response (/ in anything other than in HTTP)
-# CSRF_COOKIE_HTTPONLY = False
+# True would disallow csrf cookies in a response (/ in anything other than in HTTP)
+CSRF_COOKIE_HTTPONLY = False
 
-# SECURE_CONTENT_TYPE_NOSNIFF = False
+SECURE_CONTENT_TYPE_NOSNIFF = False
 
-# X_FRAME_OPTIONS = 'DENY'
+X_FRAME_OPTIONS = 'DENY'
