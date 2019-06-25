@@ -19,7 +19,7 @@ DEBUG = False
 
 # STATIC_TMP = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = 'https://recipe-ingredient-catalog.herokuapp.com/static'
+STATIC_URL = 'https://recipe-ingredient-catalog.herokuapp.com/static/'
 
 ALLOWED_HOSTS = ['recipe-ingredient-catalog.herokuapp.com']
 
