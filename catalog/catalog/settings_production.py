@@ -40,5 +40,3 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True
 CORS_ORIGIN_WHITELIST = ['https://recipe-ingredient-catalog.herokuapp.com/']
 
 CSRF_TRUSTED_ORIGINS = ['recipe-ingredient-catalog.herokuapp.com/']
-
-django_heroku.settings(locals())
