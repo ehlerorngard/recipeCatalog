@@ -5,6 +5,7 @@ from django.forms.models import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from .models import Ingredient, Recipe   
 from django.middleware.csrf import get_token
+from django.views.decorators.csrf import csrf_exempt
 
 # Serve the static html:
 def index(request):
@@ -208,7 +209,7 @@ class RecipeView(View):
 			print(response)
 			return JsonResponse(response, safe=False)
 
-
+	@csrf_exempt
 	def post(self, request, *args, **kwargs):
 		body = parseReqBody(request.body)
 
