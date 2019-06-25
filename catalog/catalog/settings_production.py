@@ -38,9 +38,9 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-CORS_ORIGIN_WHITELIST = ['https://orngard.com']
+CORS_ORIGIN_WHITELIST = ['https://ehlerorngard.com']
 
-CSRF_TRUSTED_ORIGINS = ['orngard.com']
+CSRF_TRUSTED_ORIGINS = ['ehlerorngard.com']
 
 # Allow these headers on the request
 CORS_ALLOW_HEADERS = [
