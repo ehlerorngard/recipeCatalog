@@ -1,0 +1,53 @@
+body {
+	font-family: "Montserrat";
+	color: #324b77;
+}
+.header {
+	font-family: "Poiret One";
+	font-weight: 700;
+/* 	position: fixed;
+	top: 0;
+	left: 0;
+	height: 118px; */
+}
+/* .headerSpacer {
+	height: 118px;
+} */
+
+.footer {
+	height: 56px;
+}
+@media only screen and (min-width: 768px) {
+	.card {
+		max-height: 62vh;
+	}
+	#recipeBox {
+		overflow-y: auto;
+	}
+}
+.cardTitle {
+	font-family: "Sacramento";
+	font-size: 3rem;
+	color: pink;
+}
+.recipeRow {
+
+}
+input {
+
+}
+.card {
+	border-radius: 6px;
+	box-shadow: 0px 14px 29px 2px rgba(0,0,0,0.14);
+}
+.toast_holder {
+	height: 94px;
+	width: 100%;
+}
+
+.recipeContents:hover {
+	cursor: pointer;
+}
+#add_recipe_button_row {
+	box-shadow: 0px -14px 29px 2px rgba(0,0,0,0.14);
+}
