@@ -42,6 +42,8 @@ CORS_ORIGIN_WHITELIST = ['https://ehlerorngard.com', 'https://www.ehlerorngard.c
 
 CSRF_TRUSTED_ORIGINS = ['ehlerorngard.com', 'www.ehlerorngard.com']
 
+CSRF_COOKIE_DOMAIN = 'ehlerorngard.com'
+
 # Allow these headers on the request
 CORS_ALLOW_HEADERS = [
     'accept',
