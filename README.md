@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Poiret+One|Dawning+of+a+New+Day|Pacifico|Roboto:300,400,500|Montserrat:300i,400,700|Miss+Fajardose|Sacramento" rel="stylesheet"></link>
 
-<span style="font-size: 3rem">a</span><span style="font-weight: 700; font-size: 5rem; line-height: 1.2"> recipe</span><span style="font-size: 4rem"> catalog</span>
+<div style="font-family: 'Poiret One', 'Roboto', sans;"><span style="font-size: 42px">a</span><span style="font-weight: 700; font-size: 60px; line-height: 1.2"> recipe</span><span style="font-size: 48px"> catalog</span></div>
 
 ## functionality
 This single-page full-stack app displays recipes from a Postgres database in a jQuery UI.  Each recipe has a list of ingredients displayed as a list editable tokens along with an input for adding new tokens (bootstrap-tokenizer).  Both recipes and their associated ingredients may be read, created, updated, and deleted via the Python/Django server.  
