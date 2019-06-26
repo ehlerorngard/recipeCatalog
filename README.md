@@ -3,6 +3,8 @@
 ## functionality
 This single-page full-stack app displays recipes from a Postgres database in a jQuery UI.  Each recipe has a list of ingredients displayed as editable tokens along with an input for adding new tokens ([Tokenfield for Bootstrap](http://sliptree.github.io/bootstrap-tokenfield/#methods)).  <br/><br/>Both recipes and their associated ingredients may be Created, Retrieved, Updated, and Deleted via the Python/Django server.  
 
+Try out the app yourself here: [<h3>recipe catalog</h3>](https://www.ehlerorngard.com/apps/recipe-ingredient-catalog/index.html)
+
 ![recipecatalog1](https://user-images.githubusercontent.com/34467850/60204456-ba557f80-9803-11e9-80a2-1a30f1131e7a.gif)
 
 ## the build
