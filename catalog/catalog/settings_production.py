@@ -8,6 +8,7 @@ DEBUG = False
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+
 STATIC_URL = 'https://recipe-ingredient-catalog.herokuapp.com/static/'
 
 ALLOWED_HOSTS = ['recipe-ingredient-catalog.herokuapp.com']

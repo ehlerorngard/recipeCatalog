@@ -10,9 +10,7 @@ var requests = {
 		$.ajax({
 			url: `https://recipe-ingredient-catalog.herokuapp.com/csrf/`,
 			method: "GET",
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 		}).then(function(response) {
 			csrfToken = response.csrftoken;
 			return token;
@@ -22,9 +20,7 @@ var requests = {
 		$.ajax({
 			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/`,
 			method: "GET",
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 		}).then(function(response) {
 			console.log("All recipes: ", response);
 			response.forEach(recipe => buildRecipe(recipe));
@@ -36,9 +32,7 @@ var requests = {
 			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/`,
 			method: "POST",
 			data: data,
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 			headers: {'X-CSRFToken': csrfToken},
 		}).then(function(response) {
 			buildRecipe(response);
@@ -50,9 +44,7 @@ var requests = {
 			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/${recipe_id}/`,
 			method: "PUT",
 			data: data,
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 			headers: {'X-CSRFToken': csrfToken},
 		}).then(function(response) {
 			buildRecipe(response);
@@ -62,9 +54,7 @@ var requests = {
 		$.ajax({
 			url: `https://recipe-ingredient-catalog.herokuapp.com/recipes/${id}/`,
 			method: "DELETE",
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 			headers: {'X-CSRFToken': csrfToken},
 		}).then(function(response) {
 			$(`#recipeRow${id}`).remove();
@@ -75,9 +65,7 @@ var requests = {
 			url: `https://recipe-ingredient-catalog.herokuapp.com/ingredients/`,
 			method: "POST",
 			data: data,
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 			headers: {'X-CSRFToken': csrfToken},
 		});
 	},
@@ -87,9 +75,7 @@ var requests = {
 			url: 'https://recipe-ingredient-catalog.herokuapp.com/ingredients/' + appendix,
 			method: "PUT",
 			data: data,
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 			headers: {'X-CSRFToken': csrfToken},
 		});
 	},
@@ -98,9 +84,7 @@ var requests = {
 			url: `https://recipe-ingredient-catalog.herokuapp.com/ingredients/${ingredient_id}/`,
 			method: "DELETE",
 			data: data,
-            xhrFields: {
-                withCredentials: true
-            },
+      xhrFields: { withCredentials: true },
 			headers: {'X-CSRFToken': csrfToken},
 		});
 	},
@@ -110,6 +94,9 @@ var requests = {
 // ===================
 // accessory functions
 // ===================
+
+// Convert ingredients from the database into the format that
+// the Tokenfield for Bootstrap requires:
 function formatIngredients(list) {
 	var ingredientList = list.map(ingt => {
 		return {value: ingt.name, label: ingt.name, id: ingt.id};
@@ -193,7 +180,7 @@ function buildTokenizer(recipe) {
 	$(`#recipeInput${recipe.id}`).tokenfield();
 	$(`#recipeInput${recipe.id}`).tokenfield('setTokens', formatIngredients(recipe.ingredients));
 
-	// bootstrap-tokenizer wipes out attributes other than "value" or "label" on edit;
+	// Bootstrap-Tokenfield wipes out attributes other than "value" or "label" on edit;
 	// use this variable to store that primary key value:
 	let lastEditedTokenId = null;
 
@@ -203,12 +190,13 @@ function buildTokenizer(recipe) {
 	// -----------------
 	$(`#recipeInput${recipe.id}`)
 		.on('tokenfield:createtoken', function(e) {
-			// If a token about the be created is already included on 
-			// this recipe, do allow its creation:
+			// If the token about to be created is already an ingredient 
+			// name on this recipe, do not allow its creation:
 			var existingTokens = $(this).tokenfield('getTokens');
 			$.each(existingTokens, function(index, token) {
-				if (token.value === e.attrs.value)
+				if (token.value === e.attrs.value) {
 					e.preventDefault();
+				}
 			});
 		})
 		.on('tokenfield:createdtoken', function(e) {
@@ -219,7 +207,10 @@ function buildTokenizer(recipe) {
 			// On a PUT request the server will handle whether to CREATE a new ingredient 
 			// or UPDATE an existing ingredient (and recipe association)
 			else {
-				requests.updateIngredient({ name: e.attrs.label, recipe: recipe.id }, lastEditedTokenId)
+				requests.updateIngredient({ 
+					name: e.attrs.label, 
+					recipe: recipe.id 
+				}, lastEditedTokenId)
 					.then(function(response) { e.attrs.id = response.id });
 			}
 			// Reset the last edited token so that if it's null, we know whether
@@ -274,7 +265,7 @@ function buildModal(recipe) {
 		</div>
 		</div>`
 
-  // If the modal for this recipe id already exists on the DOM, remove it
+	// If the modal for this recipe id already exists on the DOM, remove it
 	if ($(`#editRecipeModal${recipe.id}`).length > 0) {
 		console.log(" modal existss....");
 		$(`#modalContents${recipe.id}`).remove();
@@ -326,7 +317,7 @@ function buildModal(recipe) {
 $('#save_new_recipe_button').click(function() {
 	var recipe_name = $('#new_recipe_input').val();
 	if (recipe_name.length > 1) {
-		requests.createRecipe({ name: recipe_name, csrfmiddlewaretoken: csrfToken });
+		requests.createRecipe({ name: recipe_name });
 
 		// close the modal
 		$('#addRecipeModal').modal('hide');

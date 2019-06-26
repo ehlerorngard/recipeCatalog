@@ -48,7 +48,7 @@ def parseRecipe(obj):
 	recipe['ingredients'] = recipe_ingredients
 	return recipe
 
-# The UI's bootstrap-tokenizer automatically saves special characters 
+# The UI's bootstrap-tokenfield framework automatically saves special characters 
 # (but only special characters) as UTF-8 hex, so in order for text that 
 # includes special characters to display properly when loaded from the database, 
 # the hexes need to be decoded either before going into into the database or after 
@@ -57,7 +57,6 @@ def deHex(string):
 	decoded_string = ''
 	string_list = list(string)
 	match_index = 0
-	print("stringlist",string_list)
 	for i, val in enumerate(string_list, start=0):
 		if val == '%' and i == match_index:
 			hecks = string_list[i+1] + string_list[i+2]
@@ -65,12 +64,10 @@ def deHex(string):
 			if string_list[i+3] == '%':
 				hecks += (string_list[i+4] + string_list[i+5])
 				match_index = i+6
-			print("hecks", hecks)
 			decoded_string += bytes.fromhex(hecks).decode('utf-8')
 		elif i == match_index:
 			decoded_string += val
 			match_index += 1
-	print("deHex'd string", decoded_string)
 	return decoded_string
 
 # ===============
@@ -121,9 +118,6 @@ class IngredientView(View):
 			receta.ingredients.add(fresh_ingredient)
 			ing = fresh_ingredient
 
-		updated_ingredient_list = parseRecipe(receta)['ingredients']
-		print('updated ingredient list:', updated_ingredient_list)
-
 		return JsonResponse({"id": model_to_dict(ing)['id']}, safe=False)
 
 	# Ingredients are only created if they do not already exist
@@ -170,9 +164,6 @@ class IngredientView(View):
 			receta.ingredients.add(fresh_ingredient)
 			ing = fresh_ingredient
 
-		updated_ingredient_list = parseRecipe(receta)['ingredients']
-		print('updated ingredient list:', updated_ingredient_list)
-
 		return JsonResponse({"id": model_to_dict(ing)['id']}, safe=False)
 
 	def delete(self, request, *args, **kwargs):
@@ -199,14 +190,12 @@ class RecipeView(View):
 			for each in recipes:
 				recipe_list.append(parseRecipe(each)) 
 
-			print(recipe_list)
 			return JsonResponse(recipe_list, safe=False)
 		# Fetch one by id
 		else:
 			obj = Recipe.objects.get(pk=kwargs['id'])
 			response = parseRecipe(obj)
 
-			print(response)
 			return JsonResponse(response, safe=False)
 
 	@csrf_exempt
@@ -215,19 +204,15 @@ class RecipeView(View):
 
 		ress = Recipe(name=deHex(body['name']))
 		ress.save()
-		print("new recipe saved:", ress)
 
 		return JsonResponse(parseRecipe(ress), safe=False)
 
 	def put(self, request, *args, **kwargs):
 		body = parseReqBody(request.body)
 
-		print("PUT body", body)
-
 		ressipee = Recipe.objects.get(pk=kwargs['id'])
 		ressipee.name = body['name']
 		ressipee.save()
-		print("updated recipe saved:", ressipee)
 
 		return JsonResponse(parseRecipe(ressipee), safe=False)
 
