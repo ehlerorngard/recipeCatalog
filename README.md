@@ -34,16 +34,16 @@ may the ingredient's entry be truly updated.
 
 ### code excerpts
 
-#### view.py
-<img width="240" alt="ingredientView" src="https://user-images.githubusercontent.com/34467850/60207076-fbe92900-9809-11e9-91bd-4f26d3ec83f7.png">
+#### views.py
+<img width="220" alt="ingredientView" src="https://user-images.githubusercontent.com/34467850/60207076-fbe92900-9809-11e9-91bd-4f26d3ec83f7.png">
 
 <img width="805" alt="PUT2" src="https://user-images.githubusercontent.com/34467850/60207100-05729100-980a-11e9-8d0f-747d7505f392.png">
 
 #### index.js
 <img width="805" alt="tokens4" src="https://user-images.githubusercontent.com/34467850/60207882-cfcea780-980b-11e9-9a86-9c982784b8e0.png">
 
-###### {requests}
-<img width="848" alt="requests" src="https://user-images.githubusercontent.com/34467850/60207951-f68cde00-980b-11e9-8576-3c6582c34916.png">
+##### { requests }
+<img width="805" alt="requests" src="https://user-images.githubusercontent.com/34467850/60207951-f68cde00-980b-11e9-8576-3c6582c34916.png">
 
 
 
