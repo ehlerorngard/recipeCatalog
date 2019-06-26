@@ -47,7 +47,7 @@ may the ingredient's entry be truly updated.
 <img width="805" alt="PUT2" src="https://user-images.githubusercontent.com/34467850/60207100-05729100-980a-11e9-8d0f-747d7505f392.png">
 
 #### views.py
-<img width="770" alt="recipe_catalog_parse_and_dehex" src="https://user-images.githubusercontent.com/34467850/60213020-73718500-9817-11e9-82cc-11fd64573bfe.png">
+<img width="745" alt="recipe_catalog_parse_and_dehex" src="https://user-images.githubusercontent.com/34467850/60213020-73718500-9817-11e9-82cc-11fd64573bfe.png">
 
 #### index.js
 <img width="805" alt="tokens4" src="https://user-images.githubusercontent.com/34467850/60207882-cfcea780-980b-11e9-9a86-9c982784b8e0.png">
