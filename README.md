@@ -21,15 +21,15 @@ Existing tokens can be edited; but after an existing token is edited, it is the 
 
 #### design choices
 In an attempt to more closely mimic what a similar production database of this sort would do, I decided against allowing the creation of duplicative ingredient names.  A new ingredient is only actually created when an ingredient by that name does not already exist in the database.  So on a PUT or POST request, more logic was required on the backend.  Further, so as not to produce the side effect of altering other recipes' ingredient lists, an ingredient may not be edited if it is included on any recipe other than the one in question.<br/>
-If EITHER<br/> 
-• the desired new ingredient (name) already exists OR<br/>
-• the old ingredient name is associated to other recipes (if request is an update)<br/>
+If EITHER<br/>
+* the desired new ingredient (name) already exists OR<br/>
+* the old ingredient name is associated to other recipes (if request is an update)<br/>
 simply make a new association (and shed the recipe's association to the old ingredient if this was an attempted UPDATE to an ingredient name).  
 <br/>
-If and only if <br/>
-• the request is an attempted UPDATE<br/>
-• the new ingredient name doesn't already exist<br/>
-• the old ingredient name is not associated with any other recipes<br/>
+If and only if all of the following are true <br/>
+* the request is an attempted UPDATE<br/>
+* the new ingredient name doesn't already exist<br/>
+* the old ingredient name is not associated with any other recipes<br/>
 may the ingredient's entry be truly updated.
 
 ### code excerpts
@@ -49,7 +49,7 @@ may the ingredient's entry be truly updated.
 Further development would include<br/>
 * adding quantities for ingredients<br/>
 * adding recipe instructions<br/>
-* adding users who can have lists of saved (and created) recipes<br/>
+* adding users who can have lists of saved (and created) recipes<br/>
 * improving error handling<br/>
 
 
