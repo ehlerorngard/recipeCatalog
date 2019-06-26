@@ -7,7 +7,7 @@ This single-page full-stack app displays recipes from a Postgres database in a j
 
 <h3>Try out the app for yourself here: </h3>
 
-[<h3>recipe catalog</h3>](https://www.ehlerorngard.com/apps/recipe-ingredient-catalog/index.html)<br/><br/>
+[<h2>recipe catalog</h2>](https://www.ehlerorngard.com/apps/recipe-ingredient-catalog/index.html)<br/><br/>
 
 ## the build
 This was something of a time drill.
