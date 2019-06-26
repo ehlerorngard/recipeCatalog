@@ -1,11 +1,36 @@
 <img width="480" alt="recipeCatalog" src="https://user-images.githubusercontent.com/34467850/60143916-5edcb080-9775-11e9-91d1-ba97d864d277.png">
 
 ## functionality
-This single-page full-stack app displays recipes from a Postgres database in a jQuery UI.  Each recipe has a list of ingredients displayed as a list editable tokens along with an input for adding new tokens (bootstrap-tokenizer).  Both recipes and their associated ingredients may be read, created, updated, and deleted via the Python/Django server.  
+This single-page full-stack app displays recipes from a Postgres database in a jQuery UI.  Each recipe has a list of ingredients displayed as editable tokens along with an input for adding new tokens (bootstrap-tokenizer).  <br/><br/>Both recipes and their associated ingredients may be Created, Retrieved, Updated, and Deleted via the Python/Django server.  
 
-### the project
+## the build
 This was something of a time drill.
-The build start to finish took me a couple days (and change).
+The build from start to deployed took me about three days.
 
-### build challenges
-While most of the build was quite straightforward, there were a few detours elicited by the idiosyncracies of bootstrap-tokenizer, as well as by choices to put certain validation and logic in backend.  
+### detours in the build
+While most of the build was quite straightforward, there were a few detours elicited by the idiosyncrasies of bootstrap-tokenizer, as well as by personal choices, especially the choice to disallow creation of duplicate ingredients (which put quite a bit more validation and logic on the backend).
+
+#### limitations of bootstrap-tokenizer
+##### token attributes
+Upon turning a token to an input in order to edit, the tokenizer shows the “value” attribute instead of the “label” (which it shows when it’s displayed as a token).  Because of this, the ingredient’s primary key could not be stored in one of those fields, so I added an “id” attribute to store that.  However, because the tokenizer effectively removes all attributes other than “value” and “label” when the token is edited, I had to first store the needed primary key value temporarily in another variable, then reset the “id” attribute after each edit (specifically with a primary key returned from the database, which could be either the same as before if that entry was updated or a new primary key because a new entry needed to be created in order to avoid altering the ingredients on other recipes). 
+
+##### create vs. update
+Existing tokens can be edited; but after an existing token is edited, it is the "createtoken" event hook that fires, exactly as for a newly created token.  So I needed to utilize the variable for temp storage of the ingredient's id in to determine whether a request was to be a POST or a PUT. 
+
+#### design choices
+In an attempt to more closely mimic what a similar production database of this sort would do, I decided against allowing the creation of duplicative ingredient names.  A new ingredient is only actually created when an ingredient by that name does not already exist in the database.  So on a PUT or POST request, more logic was required on the backend.  Further, so as not to produce the side effect of altering other recipes' ingredient lists, an ingredient may not be edited if it is included on any recipe other than the one in question.<br/>
+If EITHER<br/> 
+• the desired new ingredient (name) already exists OR<br/>
+• the old ingredient name is associated to other recipes (if request is an update)<br/>
+simply make a new association (and shed the recipe's association to the old ingredient if this was an attempted UPDATE to an ingredient name).  
+<br/>
+If and only if <br/>
+• the request is an attempted UPDATE<br/>
+• the new ingredient name doesn't already exist<br/>
+• the old ingredient name is not associated with any other recipes<br/>
+may the ingredient's entry be truly updated.
+
+
+
+
+

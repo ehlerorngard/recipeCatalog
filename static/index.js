@@ -128,8 +128,17 @@ function displayInvalidToast(text, id) {
 	}
 }
 
+function displayAdviceToast() {
+	setTimeout(function() {
+		$('#advice_toast').toast('show');
+	}, 2000);
+	setTimeout(function() {
+		$('#advice_toast').toast('hide');
+	}, 8000);
+}
+
 function displayIntroToast() {
-	$('#intro_toast_text').append("<span style='font-weight: 700;'>Edit the ingredient list!</span>", 
+	$('#intro_toast_text').append("<span style='font-weight: 700; color: #93c47d;'>Edit the ingredient lists!</span>", 
 		"<span style='display: block; height: 14px'></span>",
 		"<span style='display: block'>All edits will automatically</span>", 
 		"<span style='display: block'>save to the database.</span>");
@@ -138,6 +147,7 @@ function displayIntroToast() {
 	}, 1500);
 	setTimeout(function() {
 		$('#intro_toast').toast('hide');
+        displayAdviceToast();
 	}, 8000);
 }
 
@@ -202,16 +212,19 @@ function buildTokenizer(recipe) {
 			});
 		})
 		.on('tokenfield:createdtoken', function(e) {
-			// The server will handle whether to CREATE a new ingredient or 
-			// UPDATE an existing ingredient (and recipe association)
-			requests.updateIngredient({ name: e.attrs.label, recipe: recipe.id }, lastEditedTokenId)
-				.then(function(response) {
-					e.attrs.id = response.id;
-				});
-
-			// Reset the last edited token so that if it's null, the server will know
-			// via the request parameters whether the request was an edit of an existing 
-			// ingredient or an attempt to create a new ingredient:
+			if (lastEditedTokenId === null) {
+				requests.createIngredient({ name: e.attrs.label, recipe: recipe.id })
+					.then(function(response) { e.attrs.id = response.id });
+			}
+			// On a PUT request the server will handle whether to CREATE a new ingredient 
+			// or UPDATE an existing ingredient (and recipe association)
+			else {
+				requests.updateIngredient({ name: e.attrs.label, recipe: recipe.id }, lastEditedTokenId)
+					.then(function(response) { e.attrs.id = response.id });
+			}
+			// Reset the last edited token so that if it's null, we know whether
+			// the next request (on "tokenfield:createdtoken") should be a POST
+			// or a PUT:
 			lastEditedTokenId = null;
 		})
 		.on('tokenfield:edittoken', function(e) {
@@ -236,12 +249,12 @@ function buildModal(recipe) {
   var modalContents = `
 		<div class="modal-dialog modal-dialog-centered" role="document" id="modalContents${recipe.id}">
 		<div class="modal-content">
-      <div role="alert" aria-live="assertive" aria-atomic="true" id="validation_toast${recipe.id}" class="toast"
-      data-autohide="false" style="position: absolute; top: 0; right: 0; margin: 12px 20px 0 0; border: none; box-shadow: none;">
-        <div class="toast-body">
-          <span id="validation_toast_text${recipe.id}" style="color: orange; margin-right: 12px;"></span>
-        </div>
-      </div>
+		<div role="alert" aria-live="assertive" aria-atomic="true" id="validation_toast${recipe.id}" class="toast"
+		data-autohide="false" style="position: absolute; top: 0; right: 0; margin: 12px 20px 0 0; border: none; box-shadow: none;">
+			<div class="toast-body">
+			  <span id="validation_toast_text${recipe.id}" style="color: orange; margin-right: 12px;"></span>
+			</div>
+		</div>
 		  <div class="modal-header">
 		    <h5 class="modal-title" id="exampleModalCenterTitle">edit recipe</h5>
 		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">

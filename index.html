@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Dawning+of+a+New+Day|Pacifico|Roboto:300,400,500|Montserrat:300i,400,700|Miss+Fajardose|Sacramento" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Dawning+of+a+New+Day|Roboto:300,400,500|Montserrat:300i,400,700" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="./static/dist/css/bootstrap-tokenfield.css">
 
@@ -52,7 +52,7 @@
           <div class="cardTitle text-center mb-2">
               <span style="font-size: 1.8rem;">
                   a <span style="font-size: 2.7rem; font-weight: 700;">list</span> of 
-                  <span style="font-size: 3.6rem; font-family: 'Dawning of a New Day'; color: #c4939c">ingredients</span> by 
+                  <span style="font-size: 3.2rem; color: #c4939c">ingredients</span> by 
                   <span style="font-size: 2.7rem; font-weight: 700;">recipe</span>
               </span>
           </div>
@@ -101,6 +101,16 @@
       <div class="footer p-3 text-center">
         2019 ehler ørngård
       </div>
+
+      <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" id="advice_toast" data-autohide="false" style="position: fixed; bottom: 0; left: 0; margin: 0 0 12px 12px;">
+        <div class="toast-body">
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span id="advice_toast_text" style="font-size: 1.5rem;">You can also <span style="color: #c4939c;">edit</span> & <span style="color: #c4939c;">delete</span> recipes by clicking on their names</span>
+        </div>
+      </div>
+
     </div>
 
     <script type="text/javascript" src="./static/dist/bootstrap-tokenfield.js"></script>
