@@ -7,7 +7,7 @@ This single-page full-stack app displays recipes from a Postgres database in a j
 
 ## the build
 This was something of a time drill.
-The build from start to deployed took me about three days.
+The build from start to deployed took me in the neighborhood of three days.
 
 ### detours in the build
 While most of the build was quite straightforward, there were a few detours elicited by the idiosyncrasies of bootstrap-tokenfield, as well as by personal choices, especially the choice to disallow creation of duplicate ingredients (which put quite a bit more validation and logic on the backend).
@@ -45,5 +45,11 @@ may the ingredient's entry be truly updated.
 ##### { requests }
 <img width="760" alt="requests" src="https://user-images.githubusercontent.com/34467850/60207951-f68cde00-980b-11e9-8576-3c6582c34916.png">
 
+### future development
+Further development would include<br/>
+• adding quantities for ingredients<br/>
+• adding recipe instructions<br/>
+• adding users who can have lists of saved (and created) recipes<br/>
+• improving error handling<br/>
 
 
