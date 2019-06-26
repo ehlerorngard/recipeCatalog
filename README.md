@@ -24,6 +24,7 @@ In an attempt to more closely mimic what a similar production database of this s
 If EITHER<br/>
 * the desired new ingredient (name) already exists OR<br/>
 * the old ingredient name is associated to other recipes (if request is an update)<br/>
+
 simply make a new association (and shed the recipe's association to the old ingredient if this was an attempted UPDATE to an ingredient name).  
 <br/>
 
@@ -31,6 +32,7 @@ If and only if all of the following are true<br/>
 * the request is an attempted UPDATE<br/>
 * the new ingredient name doesn't already exist<br/>
 * the old ingredient name is not associated with any other recipes<br/>
+
 may the ingredient's entry be truly updated.
 
 ### code excerpts
